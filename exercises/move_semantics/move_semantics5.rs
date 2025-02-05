@@ -6,13 +6,15 @@
 // Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
 
 fn main() {
     let mut x = 100;
     let y = &mut x;
-    let z = &mut x;
     *y += 100;
+
+    // 此时 y 的生命周期结束，我们可以创建新的可变引用 z
+    let z = &mut x;
     *z += 1000;
+
     assert_eq!(x, 1200);
 }

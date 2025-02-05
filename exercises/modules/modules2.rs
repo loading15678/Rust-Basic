@@ -7,12 +7,11 @@
 // Execute `rustlings hint modules2` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 mod delicious_snacks {
-    // TODO: Fix these use statements
-    use self::fruits::PEAR as ???
-    use self::veggies::CUCUMBER as ???
+    // 使用 pub use 重新导出常量，使其在模块外部可访问
+    pub use self::fruits::PEAR as fruit;
+    pub use self::veggies::CUCUMBER as veggie;
 
     mod fruits {
         pub const PEAR: &'static str = "Pear";
@@ -26,6 +25,7 @@ mod delicious_snacks {
 }
 
 fn main() {
+    // 现在可以正常访问重新导出的常量
     println!(
         "favorite snacks: {} and {}",
         delicious_snacks::fruit,

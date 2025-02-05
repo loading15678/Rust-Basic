@@ -16,18 +16,19 @@
 //
 // Execute `rustlings hint quiz3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
-pub struct ReportCard {
-    pub grade: f32,
+// 使用泛型参数 T 表示成绩类型，并约束 T 实现 ToString 特质
+pub struct ReportCard<T: ToString> {
+    pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl ReportCard {
+impl<T: ToString> ReportCard<T> {
     pub fn print(&self) -> String {
+        // 调用 grade 的 to_string 方法将成绩转换为字符串
         format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+            &self.student_name, &self.student_age, self.grade.to_string())
     }
 }
 
@@ -50,9 +51,9 @@ mod tests {
 
     #[test]
     fn generate_alphabetic_report_card() {
-        // TODO: Make sure to change the grade here after you finish the exercise.
+        // 修改 grade 为字母类型的成绩
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "A+".to_string(),
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
